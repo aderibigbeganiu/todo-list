@@ -1,0 +1,1 @@
+web: gunicorn backend/todo_list.wsgi
