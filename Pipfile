@@ -17,6 +17,8 @@ uritemplate = "*"
 drf-spectacular = "*"
 django-cors-headers = "*"
 gunicorn = "*"
+whitenoise = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.8"
