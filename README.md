@@ -1,2 +1,1 @@
-# Todo List
-Todo list..
+# Django React Boilerplate
