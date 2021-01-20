@@ -21,7 +21,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 
     'users',
     'api',
+    'documentations',
 
 
     'rest_framework',
@@ -46,11 +47,14 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'rest_auth',
+    'drf_spectacular',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -144,7 +148,23 @@ AUTH_USER_MODEL = 'users.User'
 
 SITE_ID = 1
 
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
 REST_AUTH_SERIALIZERS = {
 'USER_DETAILS_SERIALIZER': 'users.serializers.UserDetailsSerializer',
 'PASSWORD_RESET_SERIALIZER': 'api.serializers.PasswordSerializer',
 }
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'todolist',
+    'DESCRIPTION': 'todolist API Documentations',
+    'TOS': None,
+    'CONTACT': {'name': 'todolist', 'email': 'admin@todolist.com', 'url': 'https://lakerscreative.com/contact'},
+    'VERSION': '0.1',
+    "SWAGGER_UI_FAVICON_HREF": STATIC_URL + "logo.png",
+    'SCHEMA_PATH_PREFIX': r'/api/',
+}
+
+CORS_ALLOW_ALL_ORIGINS = True
