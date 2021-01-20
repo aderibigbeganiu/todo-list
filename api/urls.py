@@ -2,6 +2,9 @@ from django.urls import path, include
 from rest_framework import routers
 from rest_framework.schemas import get_schema_view
 from users.views import UserViewSet
+from todos.views import TodoViewSet
+from categories.views import CategoryViewSet
+from priorities.views import PriorityViewSet
 
 
 # Routers provide an easy way of automatically determining the URL conf.
@@ -9,6 +12,9 @@ from users.views import UserViewSet
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'todos', TodoViewSet)
+router.register(r'categories', CategoryViewSet)
+router.register(r'priorities', PriorityViewSet)
 
 
 

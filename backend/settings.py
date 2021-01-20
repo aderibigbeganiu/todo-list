@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'users',
     'api',
     'documentations',
+    'todos',
+    'categories',
+    'priorities',
 
 
     'rest_framework',
