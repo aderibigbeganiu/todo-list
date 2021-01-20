@@ -62,7 +62,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'todo_list.urls'
+ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
     {
@@ -89,7 +89,7 @@ AUTHENTICATION_BACKENDS = [
     ...
 ]
 
-WSGI_APPLICATION = 'todo_list.wsgi.application'
+WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 # Database
