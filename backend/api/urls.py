@@ -18,11 +18,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
-    path('openapi', get_schema_view(
-        title="AppWitMe",
-        description="AppWitMe Documentations",
-        version="1.0.0",
-        public=True,
-    ), name='openapi-schema'),
+    path('docs/', include('documentations.urls'), name='docs'),
 
 ]
