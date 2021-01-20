@@ -16,6 +16,7 @@ pyyaml = "*"
 uritemplate = "*"
 drf-spectacular = "*"
 django-cors-headers = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
