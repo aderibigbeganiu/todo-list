@@ -4,6 +4,7 @@ import { updateObject } from "../actions/utility";
 const initialState = {
 	token: null,
 	redirect: false,
+	detail: null,
 	error: null,
 	isLoading: false,
 	user: {},
@@ -19,6 +20,7 @@ const authStart = (state, action) => {
 const authSuccess = (state, action) => {
 	return updateObject(state, {
 		token: action.token,
+		detail: action.detail,
 		error: null,
 		isLoading: false,
 		redirect: true,

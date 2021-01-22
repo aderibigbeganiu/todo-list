@@ -1,59 +1,69 @@
-import React from "react";
-import { NavLink } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Navbar, NavLink, Nav } from "react-bootstrap";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Login from "../Components/Login";
+import Register from "../Components/Register";
+import * as actions from "../store/actions/auth";
 
-function Navbar() {
+const NavBar = (props) => {
+	const [showRegister, setShowRegister] = useState(false);
+	const [showLogin, setShowLogin] = useState(false);
+
+	const registerShow = () => setShowRegister(true);
+	const registerClose = () => setShowRegister(false);
+
+	const loginShow = () => setShowLogin(true);
+	const loginClose = () => setShowLogin(false);
+
 	return (
-		<nav className="navbar navbar-expand-lg navbar-light bg-light">
-			<NavLink className="navbar-brand" as={Link} to="/#">
-				Navbar
-			</NavLink>
-			<button
-				className="navbar-toggler"
-				type="button"
-				data-toggle="collapse"
-				data-target="#navbarText"
-				aria-controls="navbarText"
-				aria-expanded="false"
-				aria-label="Toggle navigation"
-			>
-				<span className="navbar-toggler-icon" />
-			</button>
-			<div className="collapse navbar-collapse" id="navbarText">
-				<ul className="navbar-nav mr-auto">
-					<li className="nav-item">
-						<NavLink className="nav-link" as={Link} to="/#">
-							Home
-						</NavLink>
-					</li>
-					<li className="nav-item">
-						<NavLink className="nav-link" as={Link} to="/#">
-							Features
-						</NavLink>
-					</li>
-					<li className="nav-item">
-						<NavLink className="nav-link" as={Link} to="/#">
-							Pricing
-						</NavLink>
-					</li>
-				</ul>
-				<NavLink
-					className="btn btn-outline-info my-2 my-sm-0"
-					as={Link}
-					to="/login"
-				>
-					Login
+		<>
+			<Navbar bg="light" variant="light">
+				<NavLink className="navbar-brand" as={Link} to="/">
+					TODOS
 				</NavLink>
-				<NavLink
-					className="btn btn-outline-info my-2 my-sm-0 ml-3"
-					as={Link}
-					to="/register"
-				>
-					Register
-				</NavLink>
-			</div>
-		</nav>
+				{!props.isAuthenticated ? (
+					<Nav className="ml-auto">
+						<Button
+							className="my-2 my-sm-0"
+							variant="outline-primary"
+							onClick={loginShow}
+						>
+							Login
+						</Button>
+						<Login loginClose={loginClose} showLogin={showLogin} />
+						<Button
+							className="my-2 my-sm-0 ml-3"
+							variant="outline-primary"
+							onClick={registerShow}
+						>
+							Register
+						</Button>
+						<Register
+							showRegister={showRegister}
+							registerClose={registerClose}
+						/>
+					</Nav>
+				) : (
+					<Nav className="ml-auto">
+						<Button
+							className="my-2 my-sm-0 ml-3"
+							variant="outline-danger"
+							onClick={props.logout}
+						>
+							Logout
+						</Button>
+					</Nav>
+				)}
+			</Navbar>
+		</>
 	);
-}
+};
 
-export default Navbar;
+const mapDispatchToProps = (dispatch) => {
+	return {
+		logout: () => dispatch(actions.logout()),
+	};
+};
+
+export default connect(null, mapDispatchToProps)(NavBar);

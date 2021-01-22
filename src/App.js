@@ -1,19 +1,20 @@
 import React, { useEffect } from "react";
+import "./App.scss";
 import { BrowserRouter as Router } from "react-router-dom";
 import BaseRouter from "./routes";
 import Layout from "./Containers/Layout";
-import Navbar from "./Containers/Navbar";
+import NavBar from "./Containers/NavBar";
 import { connect } from "react-redux";
 import * as actions from "./store/actions/auth";
 
 function App(props) {
-	useEffect((props) => {
+	useEffect(() => {
 		props.onTryAutoSignup();
-	}, []);
+	}, [props]);
 	return (
 		<Router>
 			<Layout>
-				<Navbar {...props} />
+				<NavBar {...props} />
 				<BaseRouter />
 			</Layout>
 		</Router>

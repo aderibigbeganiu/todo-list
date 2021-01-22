@@ -25,10 +25,13 @@ ALLOWED_HOSTS = ['*']
 
 EMAIL_BACKEND = env('EMAIL_BACKEND')
 EMAIL_HOST = env('EMAIL_HOST')
-EMAIL_USE_TLS = env('EMAIL_USE_TLS')
-EMAIL_PORT = env('EMAIL_PORT')
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_USE_TLS = env('EMAIL_USE_TLS')
+SERVER_EMAIL = env('SERVER_EMAIL')
+
+ADMINS = [('Adeleke', 'aderibigbeganiu@gmail.com')]
 
 
 # Application definition
@@ -170,6 +173,10 @@ SITE_ID = 1
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+      ]
 }
 
 REST_AUTH_SERIALIZERS = {
@@ -181,10 +188,22 @@ SPECTACULAR_SETTINGS = {
     'TITLE': 'todolist',
     'DESCRIPTION': 'todolist API Documentations',
     'TOS': None,
-    'CONTACT': {'name': 'todolist', 'email': 'admin@todolist.com', 'url': 'https://lakerscreative.com/contact'},
+    'CONTACT': {'name': 'todolist', 'email': 'info@lakerscreative.com', 'url': 'https://lakerscreative.com/contact'},
     'VERSION': '0.1',
     "SWAGGER_UI_FAVICON_HREF": STATIC_URL + "logo.png",
     'SCHEMA_PATH_PREFIX': r'/api/',
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+LOGIN_URL = env("LOGIN_URL")
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = LOGIN_URL
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = env("ACCOUNT_DEFAULT_HTTP_PROTOCOL")
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_USERNAME_BLACKLIST = []
+ACCOUNT_USERNAME_MIN_LENGTH = 5

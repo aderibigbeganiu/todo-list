@@ -1,10 +1,13 @@
-import { Switch, Route } from "react-router-dom";
+import React from "react";
+import { Route, Switch } from "react-router-dom";
 import Home from "./Components/Home";
+import NotFound from "./Components/NotFound";
 
-const BaseRouter = () => {
+const BaseRouter = () => (
 	<Switch>
 		<Route exact path="/" component={Home} />
-	</Switch>;
-};
+		<Route component={NotFound} />
+	</Switch>
+);
 
 export default BaseRouter;

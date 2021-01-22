@@ -2,6 +2,7 @@ import * as actionTypes from "./actionTypes";
 import axios from "axios";
 
 const endPoint = `${process.env.REACT_APP_API_URL}`;
+// const endPoint = `http://127.0.0.1:8000`;
 export const authStart = () => {
 	return {
 		type: actionTypes.AUTH_START,
@@ -30,9 +31,10 @@ export const getUserStart = () => {
 	};
 };
 
-export const getUserSuccess = () => {
+export const getUserSuccess = (user) => {
 	return {
 		type: actionTypes.GET_USER_SUCCESS,
+		user: user,
 	};
 };
 
@@ -167,9 +169,8 @@ export const confirmEmail = (username, password) => {
 export const getUser = (userToken) => {
 	return (dispatch) => {
 		dispatch(getUserStart());
-
 		axios
-			.get(`${process.env.REACT_APP_API_URL}/rest-auth/user/`, {
+			.get(`${endPoint}/rest-auth/user/`, {
 				headers: {
 					Authorization: `Token ${userToken}`,
 				},
