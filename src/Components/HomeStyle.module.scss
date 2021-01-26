@@ -1,6 +1,12 @@
 .center {
-    height: 204px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	height: 204px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 10rem;
+}
+
+.card {
+	border: solid black;
+	width: 30rem;
 }

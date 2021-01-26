@@ -5,3 +5,7 @@ export const AUTH_LOGOUT = "AUTH_LOGOUT";
 export const GET_USER_START = "GET_USER_START";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const GET_USER_FAIL = "GET_USER_FAIL";
+export const FETCH_START = "FETCH_START";
+export const FETCH_FAIL = "FETCH_FAIL";
+export const FETCH_TODO_SUCCESS = "FETCH_TODO_SUCCESS";
+export const FETCH_TODOS_SUCCESS = "FETCH_TODOS_SUCCESS";

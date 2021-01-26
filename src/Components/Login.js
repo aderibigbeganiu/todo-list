@@ -35,7 +35,7 @@ const Login = (props) => {
 					<>
 						{loginError && (
 							<Notifications
-								message={`${loginError}: Incorrect username or password`}
+								message={`${loginError}`}
 								variant="danger"
 							/>
 						)}

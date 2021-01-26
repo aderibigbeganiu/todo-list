@@ -49,7 +49,6 @@ export const logout = () => {
 	localStorage.removeItem("username");
 	localStorage.removeItem("email");
 	localStorage.removeItem("expirationDate");
-	localStorage.removeItem("pk");
 	return {
 		type: actionTypes.AUTH_LOGOUT,
 		redirect: false,
@@ -108,7 +107,6 @@ export const authSignup = (username, email, password1, password2) => {
 				}
 			)
 			.then((res) => {
-				console.log(res.data);
 				const detail = res.data.detail;
 				localStorage.setItem("username", username);
 				localStorage.setItem("email", email);
@@ -177,7 +175,6 @@ export const getUser = (userToken) => {
 			})
 			.then((res) => {
 				const user = res.data;
-				localStorage.setItem("pk", user.pk);
 				dispatch(getUserSuccess(user));
 			})
 			.catch((error) => {

@@ -8,6 +8,7 @@ const initialState = {
 	error: null,
 	isLoading: false,
 	user: {},
+	todos: [],
 };
 
 const authStart = (state, action) => {
@@ -62,6 +63,28 @@ const getUserFail = (state, action) => {
 	});
 };
 
+const fetchStart = (state, action) => {
+	return updateObject(state, {
+		error: null,
+		isLoading: true,
+	});
+};
+
+const fetchTodosSuccess = (state, action) => {
+	return updateObject(state, {
+		error: null,
+		isLoading: false,
+		todos: action.todos,
+	});
+};
+
+const fetchFail = (state, action) => {
+	return updateObject(state, {
+		error: action.error,
+		isLoading: false,
+	});
+};
+
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case actionTypes.AUTH_START:
@@ -78,6 +101,12 @@ const reducer = (state = initialState, action) => {
 			return getUserSuccess(state, action);
 		case actionTypes.GET_USER_FAIL:
 			return getUserFail(state, action);
+		case actionTypes.FETCH_START:
+			return fetchStart(state, action);
+		case actionTypes.FETCH_TODOS_SUCCESS:
+			return fetchTodosSuccess(state, action);
+		case actionTypes.FETCH_FAIL:
+			return fetchFail(state, action);
 		default:
 			return state;
 	}
