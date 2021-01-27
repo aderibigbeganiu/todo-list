@@ -1,2 +1,2 @@
 [build]
-  ignore = "runtime.txt"
+  ignore = "git diff --quiet master runtime.txt"
