@@ -15,6 +15,7 @@ build
 
 # misc
 DS_Store
+runtime.txt
 .env.dev
 .env.deploy
 env.local
