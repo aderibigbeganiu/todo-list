@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { connect } from "react-redux";
-import * as actions from "../store/actions/auth";
+import * as actions from "../store/actions/authActions";
 import RegisterStyle from "./Register.module.scss";
 import Loading from "./Loading";
 import Notifications from "./Notifications";

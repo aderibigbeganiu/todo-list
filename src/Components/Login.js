@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import * as actions from "../store/actions/auth";
+import * as actions from "../store/actions/authActions";
 import { connect } from "react-redux";
 import LoginStyle from "./Login.module.scss";
 import Notifications from "./Notifications";
@@ -34,10 +34,7 @@ const Login = (props) => {
 				) : (
 					<>
 						{loginError && (
-							<Notifications
-								message={`${loginError}`}
-								variant="danger"
-							/>
+							<Notifications message={`${loginError}`} variant="danger" />
 						)}
 						<Form className={LoginStyle.form}>
 							<Form.Group>

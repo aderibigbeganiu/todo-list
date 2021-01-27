@@ -5,7 +5,8 @@ import BaseRouter from "./routes";
 import Layout from "./Containers/Layout";
 import NavBar from "./Containers/NavBar";
 import { connect } from "react-redux";
-import * as actions from "./store/actions/auth";
+import * as authActions from "./store/actions/authActions";
+import * as userActions from "./store/actions/userActions";
 
 function App(props) {
 	useEffect(() => {
@@ -30,8 +31,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onTryAutoSignup: () => dispatch(actions.authCheckState()),
-		getUser: dispatch(actions.getUser(localStorage.getItem("token"))),
+		onTryAutoSignup: () => dispatch(authActions.authCheckState()),
+		getUser: dispatch(userActions.getUser(localStorage.getItem("token"))),
 	};
 };
 

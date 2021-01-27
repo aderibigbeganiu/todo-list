@@ -1,5 +1,11 @@
 import * as actionTypes from "../actions/actionTypes";
-import { updateObject } from "../actions/utility";
+import { authStart, authSuccess, authFail, authLogout } from "./authReducer";
+import { getUserStart, getUserSuccess, getUserFail } from "./userReducer";
+import {
+	fetchTodoStart,
+	fetchTodosSuccess,
+	fetchTodoFail,
+} from "./todoReducer";
 
 const initialState = {
 	token: null,
@@ -9,80 +15,9 @@ const initialState = {
 	isLoading: false,
 	user: {},
 	todos: [],
-};
-
-const authStart = (state, action) => {
-	return updateObject(state, {
-		error: null,
-		isLoading: true,
-	});
-};
-
-const authSuccess = (state, action) => {
-	return updateObject(state, {
-		token: action.token,
-		detail: action.detail,
-		error: null,
-		isLoading: false,
-		redirect: true,
-	});
-};
-
-const authFail = (state, action) => {
-	return updateObject(state, {
-		error: action.error,
-		isLoading: false,
-	});
-};
-
-const authLogout = (state, action) => {
-	return updateObject(state, {
-		token: null,
-		redirect: false,
-	});
-};
-
-const getUserStart = (state, action) => {
-	return updateObject(state, {
-		error: null,
-		isLoading: true,
-	});
-};
-
-const getUserSuccess = (state, action) => {
-	return updateObject(state, {
-		user: action.user,
-		isLoading: false,
-	});
-};
-
-const getUserFail = (state, action) => {
-	return updateObject(state, {
-		error: action.error,
-		isLoading: false,
-	});
-};
-
-const fetchStart = (state, action) => {
-	return updateObject(state, {
-		error: null,
-		isLoading: true,
-	});
-};
-
-const fetchTodosSuccess = (state, action) => {
-	return updateObject(state, {
-		error: null,
-		isLoading: false,
-		todos: action.todos,
-	});
-};
-
-const fetchFail = (state, action) => {
-	return updateObject(state, {
-		error: action.error,
-		isLoading: false,
-	});
+	categories: [],
+	categoriesError: null,
+	priorities: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -102,11 +37,11 @@ const reducer = (state = initialState, action) => {
 		case actionTypes.GET_USER_FAIL:
 			return getUserFail(state, action);
 		case actionTypes.FETCH_START:
-			return fetchStart(state, action);
+			return fetchTodoStart(state, action);
 		case actionTypes.FETCH_TODOS_SUCCESS:
 			return fetchTodosSuccess(state, action);
 		case actionTypes.FETCH_FAIL:
-			return fetchFail(state, action);
+			return fetchTodoFail(state, action);
 		default:
 			return state;
 	}

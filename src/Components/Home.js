@@ -1,12 +1,18 @@
-import React, { useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import * as actions from "../store/actions/todo";
+import React, { useEffect, useState } from "react";
+import { Col, Container, Row, Button } from "react-bootstrap";
+import * as actions from "../store/actions/todoActions";
 import { connect } from "react-redux";
 import HomeStyle from "./HomeStyle.module.scss";
 import TodoCard from "./TodoCard";
 import Loading from "./Loading";
+import TodoCreateForm from "./TodoCreateForm";
 
 const Home = (props) => {
+	const [createFormShow, setCreateFormShow] = useState(false);
+
+	const handleCreateFormClose = () => setCreateFormShow(false);
+	const handleCreateFormShow = () => setCreateFormShow(true);
+
 	const { todos, fetchTodos, deleteTodo, isLoading, user } = props;
 
 	useEffect(() => {
@@ -17,6 +23,15 @@ const Home = (props) => {
 		<Container className="justify-content-center">
 			<Row>
 				<Col>
+					<h1 className="text-center mt-3">
+						<Button variant="primary" onClick={handleCreateFormShow}>
+							CREATE TODO
+						</Button>
+						<TodoCreateForm
+							createFormShow={createFormShow}
+							handleCreateFormClose={handleCreateFormClose}
+						/>
+					</h1>
 					<div className={HomeStyle.center}>
 						{isLoading ? (
 							<Loading />

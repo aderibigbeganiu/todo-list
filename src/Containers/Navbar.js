@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Button, Navbar, NavLink, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Login from "../Components/Login";
 import Register from "../Components/Register";
-import * as actions from "../store/actions/auth";
-import * as todosActions from "../store/actions/todo";
+import * as authActions from "../store/actions/authActions";
+import * as todosActions from "../store/actions/todoActions";
 
 const NavBar = (props) => {
 	const [showRegister, setShowRegister] = useState(false);
@@ -21,6 +22,8 @@ const NavBar = (props) => {
 			<Navbar bg="light" variant="light">
 				<NavLink
 					className="navbar-brand"
+					as={Link}
+					to="/"
 					onClick={() => {
 						props.fetchTodos();
 					}}
@@ -67,7 +70,7 @@ const NavBar = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		logout: () => dispatch(actions.logout()),
+		logout: () => dispatch(authActions.logout()),
 		fetchTodos: () => dispatch(todosActions.fetchTodos()),
 	};
 };
