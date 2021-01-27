@@ -3,28 +3,28 @@
 # Frontend
 
 # dependencies
-node_modules
-.pnp
-pnp.js
+frontend/node_modules
+frontend/.pnp
+frontend/pnp.js
 
 # testing
-coverage
+frontend/coverage
 
 # production
-build
+frontend/build
 
 # misc
-DS_Store
-.env.dev
-.env.deploy
-env.local
-env.development.local
-env.test.local
-env.production.local
+frontend/DS_Store
+frontend/.env.dev
+frontend/.env.deploy
+frontend/env.local
+frontend/env.development.local
+frontend/env.test.local
+frontend/env.production.local
 
-pm-debug.log*
-arn-debug.log*
-arn-error.log*
+frontend/pm-debug.log*
+frontend/arn-debug.log*
+frontend/arn-error.log*
 
 
 
