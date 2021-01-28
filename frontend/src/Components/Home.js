@@ -13,7 +13,14 @@ const Home = (props) => {
 	const handleCreateFormClose = () => setCreateFormShow(false);
 	const handleCreateFormShow = () => setCreateFormShow(true);
 
-	const { todos, fetchTodos, deleteTodo, isLoading, user } = props;
+	const {
+		todos,
+		fetchTodos,
+		deleteTodo,
+		isLoading,
+		user,
+		todoCompleted,
+	} = props;
 
 	useEffect(() => {
 		fetchTodos();
@@ -45,6 +52,7 @@ const Home = (props) => {
 											key={todo.id}
 											title={todo.title}
 											deleteTodo={deleteTodo}
+											todoCompleted={todoCompleted}
 											id={todo.id}
 										/>
 									))}
@@ -70,6 +78,8 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		fetchTodos: () => dispatch(actions.fetchTodos()),
 		deleteTodo: (id) => dispatch(actions.deleteTodo(id)),
+		todoCompleted: (id, completed) =>
+			dispatch(actions.todoCompleted(id, completed)),
 	};
 };
 

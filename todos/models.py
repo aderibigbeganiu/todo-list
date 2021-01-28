@@ -8,7 +8,7 @@ class Todo(models.Model):
     title       = models.CharField(max_length=100, blank=True, null=True)
     priority_id = models.ForeignKey(Priority , verbose_name="todo_priority", related_name="priority", on_delete=models.CASCADE)
     category_id = models.ForeignKey(Category , verbose_name="todo_category", related_name="category", on_delete=models.CASCADE)
-    complete    = models.BooleanField(default=False, blank=True, null=True)
+    completed    = models.BooleanField(default=False, blank=True, null=True)
     due_date    = models.DateTimeField(auto_now=False, auto_now_add=False)
     notes       = models.TextField()
 

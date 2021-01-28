@@ -105,3 +105,18 @@ export const createTodo = (
 			});
 	};
 };
+
+export const todoCompleted = (id, completed) => {
+	return (dispatch) => {
+		axios
+			.patch(`${endPoint}/todos/${id}/`, {
+				completed: completed,
+			})
+			.then((res) => {
+				console.log(res.data.completed + " " + res.data.id);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+};

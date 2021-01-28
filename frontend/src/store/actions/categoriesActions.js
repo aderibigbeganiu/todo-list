@@ -26,5 +26,13 @@ export const fetchCategoriesFail = (error) => {
 export const fetchCategories = () => {
 	return (dispatch) => {
 		dispatch(fetchCategoriesStart());
+		axios
+			.get(`${endPoint}/categories`)
+			.then((res) => {
+				setData(res.data);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 };
