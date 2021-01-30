@@ -20,6 +20,7 @@ const Home = (props) => {
 		isLoading,
 		user,
 		todoCompleted,
+		isAuthenticated,
 	} = props;
 
 	useEffect(() => {
@@ -31,9 +32,13 @@ const Home = (props) => {
 			<Row>
 				<Col>
 					<h1 className="text-center mt-3">
-						<Button variant="primary" onClick={handleCreateFormShow}>
-							CREATE TODO
-						</Button>
+						{isAuthenticated ? (
+							<Button variant="primary" onClick={handleCreateFormShow}>
+								CREATE TODO
+							</Button>
+						) : (
+							"Login to create todo"
+						)}
 						<TodoCreateForm
 							createFormShow={createFormShow}
 							handleCreateFormClose={handleCreateFormClose}
@@ -67,6 +72,7 @@ const Home = (props) => {
 
 const mapStateToProps = (state) => {
 	return {
+		isAuthenticated: state.token !== null,
 		todos: state.todos,
 		isLoading: state.isLoading,
 		error: state.error,

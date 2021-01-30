@@ -3,7 +3,6 @@ import { getUser } from "./userActions";
 import axios from "axios";
 
 const endPoint = `${process.env.REACT_APP_API_URL}`;
-// const endPoint = `http://127.0.0.1:8000`;
 export const authStart = () => {
 	return {
 		type: actionTypes.AUTH_START,

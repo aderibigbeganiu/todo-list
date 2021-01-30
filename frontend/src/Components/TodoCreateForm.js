@@ -8,7 +8,7 @@ import Priorities from "./Priorities";
 function TodoCreateForm(props) {
 	const [data, setData] = useState({
 		title: "",
-		due_date: "",
+		due_date: null,
 		notes: "",
 		priority_id: null,
 		category_id: null,
