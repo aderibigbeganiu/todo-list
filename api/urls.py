@@ -5,6 +5,7 @@ from users.views import UserViewSet
 from todos.views import TodoViewSet
 from categories.views import CategoryViewSet
 from priorities.views import PriorityViewSet
+from .views import FacebookLogin
 
 
 # Routers provide an easy way of automatically determining the URL conf.
@@ -23,6 +24,7 @@ router.register(r'priorities', PriorityViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('rest-auth/', include('rest_auth.urls')),
+    path('rest-auth/facebook/', FacebookLogin.as_view(), name='fb_login'),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
     path('docs/', include('documentations.urls'), name='docs'),
 

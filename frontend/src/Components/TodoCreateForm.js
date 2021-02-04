@@ -53,7 +53,7 @@ function TodoCreateForm(props) {
 						<Form.Label>Due Date</Form.Label>
 						<Form.Control
 							name="due_date"
-							value={data.due_date}
+							value={data.due_date ? data.due_date : ""}
 							onChange={handleChange}
 							type="datetime-local"
 							required
@@ -76,7 +76,7 @@ function TodoCreateForm(props) {
 							name="category_id"
 							onChange={handleChange}
 							as="select"
-							defaultValue="Choose Category..."
+							value={data.category_id}
 							required
 						>
 							<Categories />
@@ -88,7 +88,7 @@ function TodoCreateForm(props) {
 							name="priority_id"
 							onChange={handleChange}
 							as="select"
-							defaultValue="Choose Priority..."
+							value={data.priority_id}
 							required
 						>
 							<Priorities />

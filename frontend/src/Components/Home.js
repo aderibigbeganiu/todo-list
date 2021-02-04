@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Col, Container, Row, Button } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import * as actions from "../store/actions/todoActions";
 import { connect } from "react-redux";
 import HomeStyle from "./HomeStyle.module.scss";
 import TodoCard from "./TodoCard";
 import Loading from "./Loading";
-import TodoCreateForm from "./TodoCreateForm";
 
 const Home = (props) => {
-	const [createFormShow, setCreateFormShow] = useState(false);
-
-	const handleCreateFormClose = () => setCreateFormShow(false);
-	const handleCreateFormShow = () => setCreateFormShow(true);
-
 	const {
 		todos,
 		fetchTodos,
@@ -20,7 +14,6 @@ const Home = (props) => {
 		isLoading,
 		user,
 		todoCompleted,
-		isAuthenticated,
 	} = props;
 
 	useEffect(() => {
@@ -28,22 +21,9 @@ const Home = (props) => {
 	}, [fetchTodos]);
 
 	return (
-		<Container className="justify-content-center">
+		<Container className="justify-content-center mt-5">
 			<Row>
 				<Col>
-					<h1 className="text-center mt-3">
-						{isAuthenticated ? (
-							<Button variant="primary" onClick={handleCreateFormShow}>
-								CREATE TODO
-							</Button>
-						) : (
-							"Login to create todo"
-						)}
-						<TodoCreateForm
-							createFormShow={createFormShow}
-							handleCreateFormClose={handleCreateFormClose}
-						/>
-					</h1>
 					<div className={HomeStyle.center}>
 						{isLoading ? (
 							<Loading />
@@ -72,7 +52,6 @@ const Home = (props) => {
 
 const mapStateToProps = (state) => {
 	return {
-		isAuthenticated: state.token !== null,
 		todos: state.todos,
 		isLoading: state.isLoading,
 		error: state.error,

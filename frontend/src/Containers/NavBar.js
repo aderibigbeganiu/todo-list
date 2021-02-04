@@ -6,16 +6,21 @@ import Login from "../Components/Login";
 import Register from "../Components/Register";
 import * as authActions from "../store/actions/authActions";
 import * as todosActions from "../store/actions/todoActions";
+import TodoCreateForm from "../Components/TodoCreateForm";
 
 const NavBar = (props) => {
 	const [showRegister, setShowRegister] = useState(false);
 	const [showLogin, setShowLogin] = useState(false);
+	const [createFormShow, setCreateFormShow] = useState(false);
 
 	const registerShow = () => setShowRegister(true);
 	const registerClose = () => setShowRegister(false);
 
 	const loginShow = () => setShowLogin(true);
 	const loginClose = () => setShowLogin(false);
+
+	const handleCreateFormClose = () => setCreateFormShow(false);
+	const handleCreateFormShow = () => setCreateFormShow(true);
 
 	return (
 		<>
@@ -28,7 +33,7 @@ const NavBar = (props) => {
 						props.fetchTodos();
 					}}
 				>
-					TODOS
+					TASKA
 				</NavLink>
 				{!props.isAuthenticated ? (
 					<Nav className="ml-auto">
@@ -56,6 +61,13 @@ const NavBar = (props) => {
 					<Nav className="ml-auto">
 						<Button
 							className="my-2 my-sm-0 ml-3"
+							variant="primary"
+							onClick={handleCreateFormShow}
+						>
+							Create
+						</Button>
+						<Button
+							className="my-2 my-sm-0 ml-3"
 							variant="outline-danger"
 							onClick={props.logout}
 						>
@@ -64,6 +76,10 @@ const NavBar = (props) => {
 					</Nav>
 				)}
 			</Navbar>
+			<TodoCreateForm
+				createFormShow={createFormShow}
+				handleCreateFormClose={handleCreateFormClose}
+			/>
 		</>
 	);
 };
